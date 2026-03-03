@@ -1,0 +1,323 @@
+{% extends 'index.html' %} {% block body%} {% load static %}
+<style>
+    .icon {
+    width: 30px; 
+    height: 30px; 
+}
+</style>
+
+<body>
+  <!-- Spinner Start -->
+  <div
+    id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+  >
+    <div class="spinner"></div>
+  </div>
+  <!-- Spinner End -->
+
+  <!-- Navbar & Carousel Start -->
+  <div class="container-fluid position-relative p-0">
+
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+      <a href="{% url 'logo' %}" class="navbar-brand p-0">
+        <h1 class="m-0">
+          <img
+            class="w-100"
+            src="{% static 'img/logo/xlogo.png' %}"
+            height="80px"
+            width="100px"
+            alt="Image"
+          />
+        </h1>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="fa fa-bars"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >About Us</a
+            >
+            <div class="dropdown-menu m-0">
+             <a href="{% url 'who_we_are' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industries.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Who we are
+              </a> 
+              
+              <a href="{% url 'company_profile' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Certifications and Standards.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Company Profile
+              </a> 
+              <a href="{% url 'missionvision' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Mission and Vision
+              </a>
+              <a href="{% url 'choose' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/list of factorics.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Why you Choose Us
+              </a>
+              <a href="{% url 'management_massage' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Supply Chain Information.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Message From Management
+              </a>
+            </div>
+          </div>
+
+          <!--<div class="nav-item dropdown">-->
+          <!--  <a-->
+          <!--    href="#"-->
+          <!--    class="nav-link dropdown-toggle"-->
+          <!--    data-bs-toggle="dropdown"-->
+          <!--    >Directories</a-->
+          <!--  >-->
+          <!--  <div class="dropdown-menu m-0">-->
+          <!--    <a href="{% url 'option' %}" class="dropdown-item"> -->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/word2.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--      International Buyer-->
+          <!--    </a>-->
+
+          <!--    <a href="{% url 'supply_chain' %}" class="dropdown-item">-->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/Supply Chain Information.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--      Supply Chain-->
+          <!--    </a> -->
+
+          <!--    <a href="{% url 'local' %}" class="dropdown-item">-->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/industries.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--     Core Industries-->
+          <!--    </a>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >Service</a
+            >
+            <div class="dropdown-menu m-0">
+             
+             <a href="{% url 'industries' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/word2.png' %}"
+                  alt="Certifications and Standards Icon"
+                  class="icon"
+                />
+                Industries We Serve
+              </a>
+              
+              <a href="{% url 'requirement_list' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Certifications and Standards.png' %}"
+                  alt="Certifications and Standards Icon"
+                  class="icon"
+                />
+                Certifications and Standards
+              </a>
+              <a href="{% url 'list_factory' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Recruitment Maps
+              </a> 
+
+            </div>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >Blog and Events</a
+            >
+            <div class="dropdown-menu m-0">
+              <!--<a href="{% url 'news_all' %}" class="dropdown-item">-->
+              <!--  <img-->
+              <!--    src="{% static 'img/icon/newsletter subscription icon.png' %}"-->
+              <!--    alt="Newsletter Subscription Icon"-->
+              <!--    class="icon"-->
+              <!--  />-->
+              <!--  News-->
+              <!--</a>-->
+              <a href="{% url 'blog' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/newsletter subscription icon.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon"
+                />
+                Blog
+              </a>
+              
+              
+              <a href="{% url 'event' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Events
+              </a>
+              <a href="{% url 'gallery' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+               Our Gallery
+              </a>
+            </div>
+          </div>
+          
+         <a href="{% url 'parthner' %}" class="nav-item nav-link">Partner</a>
+         <a href="{% url 'job_list' %}" class="nav-item nav-link">Job Portal</a>
+         <a href="{% url 'leaders' %}" class="nav-item nav-link">Team</a>   
+         <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+         
+        </div>
+      </div>
+    </nav>    
+   
+
+    <div
+      id="header-carousel"
+      class="carousel slide carousel-fade"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="w-100" src="{% static 'img/map.jpeg'%}" alt="Image" />
+          <div
+            class="carousel-caption d-flex flex-column align-items-center justify-content-center"
+          >
+            <div class="p-3" style="max-width: 900px">
+              <h5
+                class="text-white text-uppercase mb-3 animated slideInDown"
+              ></h5>
+              <h1 class="display-1 text-white mb-md-4 animated zoomIn">
+                Global Reach Leadership
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <!-- Navbar & Carousel End -->
+
+  <!-- Blog Start -->
+  <div class="container-fluid py-3 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+      <div
+        class="section-title text-center position-relative pb-3 mb-5 mx-auto"
+        style="max-width: 600px"
+      > 
+       <h3 class="fw-bold" style="color: #a4282a; text-transform: uppercase">Latest Blog </h3>
+      <h1 class="mb-0">Read The Latest Articles from Our Blog Post</h1>
+      </div>
+      <div class="row g-5"> 
+
+        {% for blog in blogs  %}
+        <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+          <div class="blog-item bg-light rounded overflow-hidden">
+            <div class="blog-img position-relative overflow-hidden">
+              <img
+                class="img-fluid"
+                src="{{ blog.image.url }}"
+                alt=""
+              /> 
+              <a
+                class="position-absolute top-0 start-0 text-white rounded-end mt-5 py-2 px-4" style="background-color: #a4282a;"
+                href=""
+                >Latest Blog</a
+              >
+            </div>
+            <div class="p-4">
+              <div class="d-flex mb-3">
+                <small class="me-3"
+                  ><i class="far fa-user text-primary me-2"></i>{{blog.author}}</small
+                >
+                <small
+                  ><i class="far fa-calendar-alt text-primary me-2"></i>{{blog.publication_date}}</small
+                >
+              </div> 
+              <a href="{% url 'blog_details' blog.slug %}" class="read-more bi "> 
+                  <h4 class="mb-3">{{blog.title}}</h4>
+              </a> 
+              
+              <p>{{ blog.content|truncatewords:18 }}</p>
+            
+               <a href="{% url 'blog_details' blog.slug %}" class="read-more bi bi-arrow-right ">Read more</a>  
+            </div>
+          </div>
+        </div>
+     {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- Blog Start -->
+
+  {% endblock %}
+</body>

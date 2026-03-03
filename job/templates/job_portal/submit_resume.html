@@ -1,0 +1,842 @@
+{% extends 'index.html' %} 
+{% block body%} 
+{% load static %}
+<style>
+
+  .icon {
+    width: 30px; 
+    height: 30px; 
+}
+
+</style>
+<head>
+    <title>Submit Resume</title>
+</head> 
+
+<body>
+  <!-- Spinner Start -->
+  <div
+    id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+   >
+    <div class="spinner"></div>
+  </div>
+  <!-- Spinner End -->
+
+  <!-- Navbar & Carousel Start -->
+  <div class="container-fluid position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+      <a href="{% url 'logo' %}" class="navbar-brand p-0">
+        <h1 class="m-0">
+          <img
+            class="w-100"
+            src="{% static 'img/logo/xlogo.png' %}"
+            height="80px"
+            width="100px"
+            alt="Image"
+          />
+        </h1>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="fa fa-bars"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >About Us</a
+            >
+            <div class="dropdown-menu m-0">
+             <a href="{% url 'who_we_are' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industries.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Who we are
+              </a> 
+              
+              <a href="{% url 'company_profile' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Certifications and Standards.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Company Profile
+              </a> 
+              <a href="{% url 'missionvision' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Mission and Vision
+              </a>
+              <a href="{% url 'choose' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/list of factorics.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Why you Choose Us
+              </a>
+              <a href="{% url 'management_massage' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Supply Chain Information.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Message From Management
+              </a>
+            </div>
+          </div>
+
+          <!--<div class="nav-item dropdown">-->
+          <!--  <a-->
+          <!--    href="#"-->
+          <!--    class="nav-link dropdown-toggle"-->
+          <!--    data-bs-toggle="dropdown"-->
+          <!--    >Directories</a-->
+          <!--  >-->
+          <!--  <div class="dropdown-menu m-0">-->
+          <!--    <a href="{% url 'option' %}" class="dropdown-item"> -->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/word2.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--      International Buyer-->
+          <!--    </a>-->
+
+          <!--    <a href="{% url 'supply_chain' %}" class="dropdown-item">-->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/Supply Chain Information.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--      Supply Chain-->
+          <!--    </a> -->
+
+          <!--    <a href="{% url 'local' %}" class="dropdown-item">-->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/industries.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--     Core Industries-->
+          <!--    </a>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >Service</a
+            >
+            <div class="dropdown-menu m-0">
+             
+             <a href="{% url 'industries' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/word2.png' %}"
+                  alt="Certifications and Standards Icon"
+                  class="icon"
+                />
+                Industries we serve
+              </a>
+              
+              <a href="{% url 'requirement_list' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Certifications and Standards.png' %}"
+                  alt="Certifications and Standards Icon"
+                  class="icon"
+                />
+                Certifications and Standards
+              </a>
+              <a href="{% url 'list_factory' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Recruitment Maps
+              </a> 
+
+            </div>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >Blog and Events</a
+            >
+            <div class="dropdown-menu m-0">
+              <!--<a href="{% url 'news_all' %}" class="dropdown-item">-->
+              <!--  <img-->
+              <!--    src="{% static 'img/icon/newsletter subscription icon.png' %}"-->
+              <!--    alt="Newsletter Subscription Icon"-->
+              <!--    class="icon"-->
+              <!--  />-->
+              <!--  News-->
+              <!--</a>-->
+              <a href="{% url 'blog' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/newsletter subscription icon.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon"
+                />
+                Blog
+              </a>
+              
+              
+              <a href="{% url 'event' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Events
+              </a>
+              <a href="{% url 'gallery' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+               Our Gallery
+              </a>
+            </div>
+          </div>
+          
+         <a href="{% url 'parthner' %}" class="nav-item nav-link">Partner</a>
+         <a href="{% url 'job_list' %}" class="nav-item nav-link">Job Portal</a>
+         <a href="{% url 'leaders' %}" class="nav-item nav-link">Team</a>   
+         <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+         
+        </div>
+      </div>
+    </nav>    
+ 
+    <div
+      id="header-carousel"
+      class="carousel slide carousel-fade"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="w-100" src="{% static 'img/job26.jpg'%}" alt="Image" />
+          <div
+            class="carousel-caption d-flex flex-column align-items-center justify-content-center"
+          >
+            
+          </div>
+        </div>
+        {% comment %} <div class="carousel-item">
+          <img class="w-100" src="{% static 'img/home2.jpg'%}" alt="Image" />
+          <div
+            class="carousel-caption d-flex flex-column align-items-center justify-content-center"
+          >
+            <div class="p-3" style="max-width: 900px">
+              <h5 class="text-white text-uppercase mb-3 animated slideInDown">
+                Creative & Innovative
+              </h5>
+              <h1 class="display-1 text-white mb-md-4 animated zoomIn">
+                Creative & Innovative Digital Solution
+              </h1>
+              <a
+                href=""
+                class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"
+                >Free Quote</a
+              >
+              <a
+                href="{% url 'contact'  %}"
+                class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight"
+                >Contact Us</a
+              >
+            </div>
+          </div>
+        </div> {% endcomment %}
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <!-- Navbar & Carousel End -->
+
+<style>
+  .jd-wrapper {
+    max-width: 1000px;
+    margin: 15px auto;
+    padding: 10px;
+  }
+
+  .jd-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+
+  .jd-header {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    padding: 15px 20px;
+    color: white;
+  }
+
+  .jd-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    line-height: 1.2;
+  }
+
+  .jd-desc {
+    font-size: 0.88rem;
+    margin: 0;
+    opacity: 0.9;
+    line-height: 1.3;
+  }
+
+  .jd-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .jd-info-item {
+    padding: 8px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    font-size: 0.87rem;
+    gap: 12px;
+  }
+
+  .jd-info-item:last-child {
+    border-bottom: none;
+  }
+
+  .jd-info-item:hover {
+    background: #f8fafc;
+  }
+
+  .jd-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .jd-label {
+    font-weight: 600;
+    color: #1e293b;
+    min-width: 125px;
+    flex-shrink: 0;
+  }
+
+  .jd-value {
+    color: #475569;
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .jd-circular {
+    padding: 15px 20px;
+    background: #f8fafc;
+    border-top: 2px solid #2563eb;
+  }
+
+  .jd-circular-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .jd-circular-img {
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  .jd-btn-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .jd-btn {
+    padding: 7px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .jd-btn-view {
+    background: #2563eb;
+    color: white;
+  }
+
+  .jd-btn-view:hover {
+    background: #1d4ed8;
+    color: white;
+  }
+
+  .jd-btn-download {
+    background: #059669;
+    color: white;
+  }
+
+  .jd-btn-download:hover {
+    background: #047857;
+    color: white;
+  }
+
+  .jd-form-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+  }
+
+  .jd-form-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #2563eb;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .jd-section {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 15px 0 10px 0;
+    padding-left: 10px;
+    border-left: 3px solid #2563eb;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .jd-section:first-of-type {
+    margin-top: 0;
+  }
+
+  .jd-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .jd-field {
+    margin-bottom: 12px;
+  }
+
+  .jd-lbl {
+    display: block;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 5px;
+    font-size: 0.86rem;
+  }
+
+  .jd-required::after {
+    content: "*";
+    color: #dc2626;
+    margin-left: 3px;
+  }
+
+  .jd-input,
+  .jd-textarea,
+  .jd-select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 5px;
+    font-size: 0.87rem;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .jd-input:focus,
+  .jd-textarea:focus,
+  .jd-select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+  }
+
+  .jd-textarea {
+    min-height: 70px;
+    resize: vertical;
+  }
+
+  .jd-file {
+    width: 100%;
+    padding: 7px;
+    border: 1.5px dashed #cbd5e1;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+
+  .jd-file:hover {
+    border-color: #2563eb;
+    background: #f8fafc;
+  }
+
+  .jd-hint {
+    color: #64748b;
+    font-size: 0.78rem;
+    margin-top: 3px;
+    display: block;
+  }
+
+  .jd-submit {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    color: white;
+    border: none;
+    padding: 11px 28px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .jd-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .jd-wrapper {
+      padding: 8px;
+    }
+
+    .jd-header {
+      padding: 12px 15px;
+    }
+
+    .jd-title {
+      font-size: 1.25rem;
+    }
+
+    .jd-info-item {
+      padding: 7px 15px;
+      flex-wrap: wrap;
+    }
+
+    .jd-label {
+      min-width: auto;
+      font-size: 0.8rem;
+    }
+
+    .jd-circular {
+      padding: 12px 15px;
+    }
+
+    .jd-form-card {
+      padding: 15px;
+    }
+
+    .jd-row {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .jd-btn-group {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<div class="jd-wrapper">
+
+    <!-- Job Details -->
+    <div class="jd-card">
+        <div class="jd-header">
+            <h1 class="jd-title">{{ job.title }}</h1>
+            {% if job.description %}
+            <p class="jd-desc">{{ job.description }}</p>
+            {% endif %}
+        </div>
+
+        <ul class="jd-info-list">
+            {% if job.company %}
+            <li class="jd-info-item">
+                <span class="jd-icon">🏢</span>
+                <span class="jd-label">Company</span>
+                <span class="jd-value">{{ job.company }}</span>
+            </li>
+            {% endif %}
+            
+            {% if job.deadline %}
+            <li class="jd-info-item">
+                <span class="jd-icon">⏰</span>
+                <span class="jd-label">Deadline</span>
+                <span class="jd-value">{{ job.deadline|date:"d M, Y" }}</span>
+            </li>
+            {% endif %}
+            
+            {% if job.experience %}
+            <li class="jd-info-item">
+                <span class="jd-icon">💼</span>
+                <span class="jd-label">Experience</span>
+                <span class="jd-value">{{ job.experience }}</span>
+            </li>
+            {% endif %}
+            
+            {% if job.place %}
+            <li class="jd-info-item">
+                <span class="jd-icon">📍</span>
+                <span class="jd-label">Location</span>
+                <span class="jd-value">{{ job.place }}</span>
+            </li>
+            {% endif %}
+            
+            {% if job.duration %}
+            <li class="jd-info-item">
+                <span class="jd-icon">⏳</span>
+                <span class="jd-label">Duration</span>
+                <span class="jd-value">{{ job.duration }}</span>
+            </li>
+            {% endif %}
+            
+            {% if job.skills_required %}
+            <li class="jd-info-item">
+                <span class="jd-icon">⚡</span>
+                <span class="jd-label">Skills Required</span>
+                <span class="jd-value">{{ job.skills_required }}</span>
+            </li>
+            {% endif %}
+            
+            {% if job.salary %}
+            <li class="jd-info-item">
+                <span class="jd-icon">💰</span>
+                <span class="jd-label">Salary</span>
+                <span class="jd-value">{{ job.salary }}</span>
+            </li>
+            {% endif %}
+            
+            {% if job.responsibility %}
+            <li class="jd-info-item">
+                <span class="jd-icon">📋</span>
+                <span class="jd-label">Responsibilities</span>
+                <span class="jd-value">{{ job.responsibility }}</span>
+            </li>
+            {% endif %}
+            
+            {% if job.others_facility %}
+            <li class="jd-info-item">
+                <span class="jd-icon">🎁</span>
+                <span class="jd-label">Benefits</span>
+                <span class="jd-value">{{ job.others_facility }}</span>
+            </li>
+            {% endif %}
+        </ul>
+
+        {% if job.circular %}
+        <div class="jd-circular">
+            <h5 class="jd-circular-title">
+                <span>📄</span>
+                Job Circular
+            </h5>
+            {% if circular_is_pdf %}
+                <div class="jd-btn-group">
+                    <a href="{{ job.circular.url }}" target="_blank" class="jd-btn jd-btn-view">
+                        <span>👁️</span> View PDF
+                    </a>
+                    <a href="{{ job.circular.url }}" download class="jd-btn jd-btn-download">
+                        <span>⬇️</span> Download
+                    </a>
+                </div>
+            {% else %}
+                <img src="{{ job.circular.url }}" alt="Circular" class="jd-circular-img"/>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Application Form -->
+    <div class="jd-form-card">
+        <h3 class="jd-form-title">
+            <span>📝</span>
+            Apply for this Job
+        </h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <h4 class="jd-section">
+                <span>👤</span>
+                Personal Information
+            </h4>
+            <div class="jd-row">
+                <div class="jd-field">
+                    <label for="name" class="jd-lbl jd-required">Full Name</label>
+                    <input type="text" class="jd-input" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+                <div class="jd-field">
+                    <label for="contact" class="jd-lbl jd-required">Contact</label>
+                    <input type="text" class="jd-input" id="contact" name="contact" required placeholder="+880 1xxx-xxxxxx">
+                </div>
+            </div>
+
+            <div class="jd-row">
+                <div class="jd-field">
+                    <label for="email" class="jd-lbl jd-required">Email</label>
+                    <input type="email" class="jd-input" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+                <div class="jd-field">
+                    <label for="date_of_birth" class="jd-lbl">Date of Birth</label>
+                    <input type="date" class="jd-input" id="date_of_birth" name="date_of_birth">
+                </div>
+            </div>
+
+            <div class="jd-field">
+                <label for="address" class="jd-lbl">Address</label>
+                <textarea class="jd-textarea" id="address" name="address" placeholder="Your complete address"></textarea>
+            </div>
+
+            <h4 class="jd-section">
+                <span>💼</span>
+                Professional Details
+            </h4>
+            <div class="jd-row">
+                <div class="jd-field">
+                    <label for="position" class="jd-lbl">Position</label>
+                    <input type="text" class="jd-input" id="position" name="position" placeholder="e.g., Senior Developer">
+                </div>
+                <div class="jd-field">
+                    <label for="experience" class="jd-lbl">Experience (Years)</label>
+                    <input type="number" class="jd-input" id="experience" name="experience" placeholder="0">
+                </div>
+            </div>
+
+            <!--<div class="jd-row">-->
+            <!--    <div class="jd-field">-->
+            <!--        <label for="expected_salary" class="jd-lbl">Expected Salary</label>-->
+            <!--        <input type="text" class="jd-input" id="expected_salary" name="expected_salary" placeholder="e.g., 50,000 BDT">-->
+            <!--    </div>-->
+            <!--    <div class="jd-field">-->
+            <!--        <label for="category" class="jd-lbl">Category</label>-->
+            <!--        <input type="text" class="jd-input" id="category" name="category" placeholder="e.g., IT/Software">-->
+            <!--    </div>-->
+            <!--</div>-->
+
+            <h4 class="jd-section">
+                <span>🛂</span>
+                Passport Information
+            </h4>
+            <div class="jd-row">
+                <div class="jd-field">
+                    <label for="passport_number" class="jd-lbl">Passport Number</label>
+                    <input type="text" class="jd-input" id="passport_number" name="passport_number" placeholder="A12345678">
+                </div>
+                <div class="jd-field">
+                    <label for="passport_issue_date" class="jd-lbl">Issue Date</label>
+                    <input type="date" class="jd-input" id="passport_issue_date" name="passport_issue_date">
+                </div>
+            </div>
+
+            <div class="jd-row">
+                <div class="jd-field">
+                    <label for="passport_expire_date" class="jd-lbl">Expiry Date</label>
+                    <input type="date" class="jd-input" id="passport_expire_date" name="passport_expire_date">
+                </div>
+                <div class="jd-field">
+                    <label for="apply_type" class="jd-lbl">Apply Type</label>
+                    <select class="jd-select" name="apply_type" id="apply_type">
+                        <option value="">Select type</option>
+                        <option value="self">Self Apply</option>
+                        <option value="agent">Agent Apply</option>
+                    </select>
+                </div>
+            </div>
+
+            <h4 class="jd-section">
+                <span>📌</span>
+                Additional Information
+            </h4>
+            <div class="jd-field">
+                <label for="remark" class="jd-lbl">Remarks</label>
+                <textarea class="jd-textarea" id="remark" name="remark" placeholder="Any additional information..."></textarea>
+            </div>
+
+            <h4 class="jd-section">
+                <span>📎</span>
+                Documents
+            </h4>
+            <div class="jd-row">
+                <div class="jd-field">
+                    <label for="resume" class="jd-lbl jd-required">CV/Resume</label>
+                    <input type="file" class="jd-file" id="resume" name="resume" required accept=".pdf,.doc,.docx">
+                    <small class="jd-hint">PDF, DOC, DOCX (Max 5MB)</small>
+                </div>
+                <div class="jd-field">
+                    <label for="passport_copy" class="jd-lbl">Passport Copy</label>
+                    <input type="file" class="jd-file" id="passport_copy" name="passport_copy" accept=".pdf,.jpg,.jpeg,.png">
+                    <small class="jd-hint">PDF, JPG, PNG (Max 5MB)</small>
+                </div>
+            </div>
+
+            <button type="submit" class="jd-submit">
+                <span>✓</span>
+                Submit Application
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+</body> 

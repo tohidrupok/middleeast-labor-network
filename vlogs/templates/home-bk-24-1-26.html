@@ -1,0 +1,1075 @@
+{% extends 'index.html' %}
+{% block body%} 
+{% load static %}
+
+<style>
+  @media (max-width: 991.98px) {
+    .col-lg-8 {
+      order: 1;
+      margin-bottom: 20px;
+    }
+    .col-lg-4 {
+      order: 0;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .video-section {
+      margin-left: 0;
+      height: auto;
+    }
+    #video {
+      width: 100%;
+      height: auto;
+    }
+    .latest-news-container {
+      width: 100%;
+      height: auto;
+      margin-left: 0;
+      padding: 20px;
+    }
+    .news-container marquee {
+      height: 300px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .video-section,
+    .latest-news-container {
+      height: auto;
+    }
+    .latest-news-container {
+      margin-top: 20px;
+    }
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+  .icon2 {
+    width: 100px;
+    height: 100px;
+  } 
+  .small-text {
+    font-size: 0.8em; 
+}
+
+  .background-image {
+    background-image: url('{% static "img/Background/whitered.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-color: #f9f9f9;
+  }
+
+  .background-image2 {
+    background-image: url('{% static "img/Background/whitered.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-color: #f9f9f9;
+  }
+
+  .background-image1 {
+    background-image: url('{% static "img/Background/whitered.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-color: #f9f9f9;
+  }
+
+  .background-image3 {
+    background-image: url('{% static "img/Background/whitered.jpg" %}');
+    background-size: 70%;
+    background-position: center;
+    background-color: #f9f9f9;
+  }
+
+  .background-image4 {
+    background-image: url('{% static "img/Background/whitered.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-color: #f9f9f9;
+  }
+
+  .background-image5 {
+    background-image: url('{% static "img/Background/whitered.jpg" %}');
+    background-size: 50%;
+    background-position: center;
+    background-color: #f9f9f9;
+  }
+
+  .bg-custom-color {
+    background-color: #a4282a;
+  }
+
+  .breaking-news-icon {
+    color: #ff0000;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  .dropdown-menu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: 0;
+  }  
+
+  {% comment %} body,
+ h1, h2, h3, h4, h5, h6,
+p,
+.btn,
+.navbar-brand,
+.section-title,
+.bi,
+.form-control,
+.input-group,
+.btn-square {
+    font-family: 'Roboto', sans-serif !important;
+}  {% endcomment %}
+ body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh; 
+    margin-top: 20px;
+    background-color: #f0f0f0;
+}
+
+
+.search-form {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    padding: 5px 10px;
+    box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+    width: 60%;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 24px;
+    font-size: 16px;
+    flex: 1;
+}
+
+.search-btn {
+    background: #bb2d3b; 
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease; 
+}
+
+.search-btn svg {
+    width: 18px;
+    height: 18px; 
+    fill: white; 
+}
+
+.search-btn:hover {
+    transform: scale(1.4); 
+    background-color: #f48155; 
+}
+
+.search-results {
+    padding: 20px;
+}
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    
+    var carouselElement = document.querySelector("#header-carousel");
+    var carousel = new bootstrap.Carousel(carouselElement, {
+      interval: false, 
+    });
+
+    
+    function switchToNextSlide() {
+      carousel.next();
+    }
+
+    // Set an interval to switch slides every 3 seconds
+    setInterval(switchToNextSlide, 3000);
+  });
+
+  //mail / sms success
+
+  function showModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  }
+
+  function closeModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  }
+
+  window.onclick = function (event) {
+    var modal = document.getElementById("myModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
+
+<body>
+  <!-- Spinner Start -->
+<div
+    id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+   >
+    <div class="spinner"></div>
+   </div>
+  <!-- Spinner End -->
+
+  <!-- Navbar & Carousel Start -->
+  <div class="container-fluid position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+      <a href="{% url 'logo' %}" class="navbar-brand p-0">
+        <h1 class="m-0">
+          <img
+            class="w-100"
+            src="{% static 'img/logo/xlogo.png' %}"
+            height="80px"
+            width="100px"
+            alt="Image"
+          />
+        </h1>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="fa fa-bars"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >About Us</a
+            >
+            <div class="dropdown-menu m-0">
+              <a href="{% url 'about' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/information about factories.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon"
+                />
+                Who We Are
+              </a>
+              <a href="{% url 'missionvision' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Mission and Vision
+              </a>
+              <a href="{% url 'choose' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/list of factorics.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Why you Choose Us
+              </a>
+              <a href="{% url 'management_massage' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Supply Chain Information.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Message From Management
+              </a>
+            </div>
+          </div>
+
+          <!--<div class="nav-item dropdown">-->
+          <!--  <a-->
+          <!--    href="#"-->
+          <!--    class="nav-link dropdown-toggle"-->
+          <!--    data-bs-toggle="dropdown"-->
+          <!--    >Directories</a-->
+          <!--  >-->
+          <!--  <div class="dropdown-menu m-0">-->
+          <!--    <a href="{% url 'option' %}" class="dropdown-item"> -->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/word2.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--      International Buyer-->
+          <!--    </a>-->
+
+          <!--    <a href="{% url 'supply_chain' %}" class="dropdown-item">-->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/Supply Chain Information.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--      Supply Chain-->
+          <!--    </a> -->
+
+          <!--    <a href="{% url 'local' %}" class="dropdown-item">-->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/industries.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--     Core Industries-->
+          <!--    </a>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >Service</a
+            >
+            <div class="dropdown-menu m-0">
+              <a href="{% url 'resource_library' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Factory & Tools Manufacturers Compnay List.png' %}"
+                  alt="Resource Library Icon"
+                  class="icon"
+                />
+                Resource Library
+              </a>
+              <a href="{% url 'requirement_list' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Certifications and Standards.png' %}"
+                  alt="Certifications and Standards Icon"
+                  class="icon"
+                />
+                Certifications and Standards
+              </a>
+              <a href="{% url 'list_factory' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Interactive Maps
+              </a> 
+
+              <a href="{% url 'list_factory' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Factory Setup
+              </a>
+            </div>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >News and Events</a
+            >
+            <div class="dropdown-menu m-0">
+              <a href="{% url 'news_all' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/newsletter subscription icon.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon"
+                />
+                News
+              </a>
+              <a href="{% url 'event' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Events
+              </a>
+              <a href="{% url 'gallery' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+               Our Gallery
+              </a>
+            </div>
+          </div>
+          <a href="{% url 'leaders' %}" class="nav-item nav-link"
+            >Industry Leader</a
+          >
+          <a href="{% url 'job_list' %}" class="nav-item nav-link"
+            >Job Portal</a
+          >
+          <a href="{% url 'blog' %}" class="nav-item nav-link">Blog</a>
+          <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+        </div>
+      </div>
+    </nav>    
+
+    <div
+      id="header-carousel"
+      class="carousel slide carousel-fade"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner"> 
+        {% for home in home %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img class="w-100" src="{{home.slide.url}}" alt="Image" />
+         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+    <div class="p-3" style="max-width: 900px">
+        <h2 class="display-1 text-white mb-md-3 animated zoomIn">
+            <span class="small-text">{{ home.big_text }}</span>
+        </h2>
+    </div>
+   </div>
+
+        </div>
+        {% endfor %}
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <!-- Navbar & Carousel End -->
+
+  <!-- Full Screen Search Start -->
+  <div class="modal fade" id="searchModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content" style="background: rgba(9, 30, 62, 0.7)">
+        <div class="modal-header border-0">
+          <button
+            type="button"
+            class="btn bg-white btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div
+          class="modal-body d-flex align-items-center justify-content-center"
+        >
+          <div class="input-group" style="max-width: 600px">
+            <input
+              type="text"
+              class="form-control bg-transparent border-primary p-3"
+              placeholder="Type search keyword"
+            />
+            <button class="btn btn-primary px-4">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Full Screen Search End --> 
+<div class="search-container">
+    <form method="get" action="{% url 'search' %}" class="search-form">
+        <input type="text" name="query" value="{{ query }}" placeholder="Search..." class="search-input">
+        <button type="submit" class="search-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.71 20.29l-4.53-4.53a8 8 0 1 0-1.42 1.42l4.53 4.53a1 1 0 0 0 1.42-1.42zM10 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+            </svg>
+        </button>
+    </form>
+</div>
+ 
+  <!-- Video and News Section Start -->
+  <div class="container-fluid py-3 wow fadeInUp background-image2">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-8 col-md-12 order-1 order-md-0">
+          <div class="video-section">
+            <video id="video" width="100%" height="auto" autoplay muted>
+              <source src="{{ main_vidoe.video.url }}" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>  
+
+          <div class="col-lg-4 col-md-12" style="background-color: #c8b6a9" >
+        <div class="latest-news-container">
+          <div class="news-container" style="height: 300px; overflow: hidden;">
+            <marquee direction="up"
+                onmouseover="this.stop();"
+                onmouseout="this.start();"
+                scrollamount="2"
+                loop="1000"
+                style="height: 100%">
+              <div class="news-item">
+                {% for article in latest_news %}
+                <a
+                  href="{% url 'news_detail' article.slug %}"
+                  class="company-link"
+                >
+                  <p style="color: #000000; margin-bottom: 30px">
+                    <span style="color: #fc0101">📋</span> {{ article.title }}
+                  </p>
+                </a>
+                {% endfor %}
+              </div>
+            </marquee>
+          </div>
+        </div>
+       </div>
+        {% comment %} <div
+          class="col-lg-4 col-md-12 order-0 order-md-1 mt-4 mt-md-0; height: 416px;"
+        >
+          <div
+            class="latest-news-container"
+            style="background-color: #c8b6a9; height: 394px"
+          >
+            <div
+              class="news-container"
+              style="height: calc(100% - 40px); overflow: hidden"    
+            >
+              <!-- Iterate over your latest news articles -->
+              <marquee
+                direction="up"
+                onmouseover="this.stop();"
+                onmouseout="this.start();"
+                scrollamount="2"
+                loop="1000"
+                style="height: 100%"
+              >
+                {% for article in latest_news %}
+                <a
+                  href="{% url 'news_detail' article.slug %}"
+                  class="company-link"
+                >
+                  <p style="color: #f5fbff; margin-bottom: 30px">
+                    <span style="color: #fc0101">ᗔ</span> {{ article.title }}
+                  </p>
+                </a>
+                {% endfor %}
+              </marquee>
+            </div>
+          </div>
+        </div> {% endcomment %}
+      </div>
+    </div>
+  </div>
+  <!-- Video and News Section End -->
+     <br></br><br></br>
+  <!-- About Start -->
+  <div
+    class="container-fluid py-3 wow fadeInUp background-image1"
+    data-wow-delay="0.1s"
+   >
+    <div class="container py-5">
+      <div class="row g-5">
+        <div class="col-lg-7">
+          <div class="section-title position-relative pb-3 mb-5">
+            <h5
+              class="fw-bold"
+              style="color: #a4282a; text-transform: uppercase"
+            >
+              About Us
+            </h5>
+
+            <h1 class="mb-0">Comprehensive Industry Insight</h1>
+          </div>
+          <p class="mb-4" style="text-align: justify">
+            At JSBDOVERSEASLTD, we offer an extensive platform that
+            encompasses all facets of allied industries.
+            From sourcing to manufacturing and promotion, we provide
+            comprehensive insights into every aspect of the business.
+          </p>
+          <div class="row g-0 mb-3">
+            <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+              <h5 class="mb-3">
+                <i class="fa fa-check me-3" style="color: #a4282a"></i>Award
+                Winning
+              </h5>
+              <h5 class="mb-3">
+                <i class="fa fa-check me-3" style="color: #a4282a"></i
+                >Professional Staff
+              </h5>
+            </div>
+            <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+              <h5 class="mb-3">
+                <i class="fa fa-check me-3" style="color: #a4282a"></i>24/7
+                Support
+              </h5>
+              <h5 class="mb-3">
+                <i class="fa fa-check me-3" style="color: #a4282a"></i>Fair
+                Prices
+              </h5>
+            </div>
+          </div>
+          <div
+            class="d-flex align-items-center mb-4 wow fadeIn"
+            data-wow-delay="0.6s"
+          >
+            <div>
+              <a
+                href="{% url 'about'  %}"
+                class="btn"
+                style="background-color: #a4282a; color: white; py-md-3 px-md-5 me-3 animated slideInLeft"
+                >See More</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5" style="min-height: 400px">
+          <div class="position-relative h-100">
+            <img
+              class="position-absolute w-100 h-100 rounded wow zoomIn"
+              data-wow-delay="0.9s"
+              src="{% static 'img/personal.jpg' %}"
+              style="object-fit: cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- About End -->
+<br></br><br></br>
+  <!-- Features Start -->
+  <div
+    class="container-fluid py-3 wow fadeInUp background-image"
+    data-wow-delay="0.1s"
+    >
+    <div class="container py-5">
+      <div
+        class="section-title text-center position-relative pb-3 mb-5 mx-auto"
+        style="max-width: 600px"
+      >
+        <h5 class="fw-bold" style="color: #a4282a; text-transform: uppercase">
+          Why Choose Us
+        </h5>
+        <h1 class="mb-0">We Are Here to Grow Your Business Exponentially</h1>
+      </div>
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="row g-5">
+            <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
+              <div>
+                <img
+                  src="{% static 'img\icon\Best In Industry.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon2"
+                />
+              </div>
+              <h4>Best In Industry</h4>
+              <p class="mb-0">
+                Experience the best in industry with top-tier innovation, style,
+                and performance in every product.
+              </p>
+            </div>
+            <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
+              <div>
+                <img
+                  src="{% static 'img\icon\Exclusive Support For Your Business.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon2"
+                />
+              </div>
+              <h4>Logistics Support</h4>
+              <p class="mb-0">
+                Reliable logistics support for timely delivery and seamless
+                operations, ensuring your supply chain runs smoothly.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-lg-4 wow zoomIn"
+          data-wow-delay="0.9s"
+          style="min-height: 350px"
+        >
+          <div class="position-relative h-100">
+            <img
+              class="position-absolute w-100 h-100 rounded wow zoomIn"
+              data-wow-delay="0.1s"
+              src="{% static 'img/class.jpg' %}"
+              style="object-fit: cover"
+            />
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="row g-5">
+            <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
+              <div>
+                <img
+                  src="{% static 'img\icon\Professional Staff.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon2"
+                />
+              </div>
+              <h4>Professional Staff</h4>
+              <p class="mb-0">
+                Our professional staff provides expert advice, exceptional
+                service, and personalized care for all your needs.
+              </p>
+            </div>
+            <div class="col-12 wow zoomIn" data-wow-delay="0.8s">
+              <div>
+                <img
+                  src="{% static 'img\icon\Logistics Support.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon2"
+                />
+              </div>
+              <h4>Exclusive Support For Your Business</h4>
+              <p class="mb-0">
+                Exclusive business support offers personalized solutions and
+                exceptional service tailored to your needs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Features Start -->
+          <br></br><br></br>
+  <!-- Service Start -->
+  <div
+    class="container-fluid py-3 wow fadeInUp background-image4"
+    data-wow-delay="0.1s"
+   >
+    <div class="container py-5">
+      <div
+        class="section-title text-center position-relative pb-3 mb-5 mx-auto"
+        style="max-width: 600px"
+      >
+        <h5 class="fw-bold" style="color: #a4282a; text-transform: uppercase">
+          Our Services
+        </h5>
+        <h1 class="mb-0">JSBDOVERSEASLTD. is stands for your Business Success</h1>
+      </div>
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+          <div
+            class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center"
+          >
+            <div>
+              <img
+                src="{% static 'img/icon/Factory & Tools Manufacturers Compnay List.png' %}"
+                alt="Newsletter Subscription Icon"
+                class="icon2"
+              />
+            </div>
+            <h4 class="mb-3">Resource Library</h4>
+            <p class="m-0">
+              Amet justo dolor lorem kasd amet magna sea stet eos vero lorem
+              ipsum dolore sed
+            </p>
+            <a
+              class="btn btn-lg btn-primary rounded"
+              href="{% url 'resource_library'  %}"
+            >
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
+          <div
+            class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center"
+          >
+            <div>
+              <img
+                src="{% static 'img\icon\Certifications and Standards.png' %}"
+                alt="Newsletter Subscription Icon"
+                class="icon2"
+              />
+            </div>
+            <h4 class="mb-3">Certifications and Standards</h4>
+            <p class="m-0">
+              Amet justo dolor lorem kasd amet magna sea stet eos vero lorem
+              ipsum dolore sed
+            </p>
+            <a
+              class="btn btn-lg btn-primary rounded"
+              href="{% url 'requirement_list'  %}"
+            >
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.9s">
+          <div
+            class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center"
+          >
+            <div>
+              <img
+                src="{% static 'img\icon\Supply Chain Information.png' %}"
+                alt="Newsletter Subscription Icon"
+                class="icon2"
+              />
+            </div>
+            <h4 class="mb-3">Supply Chain Information</h4>
+            <p class="m-0">
+              Amet justo dolor lorem kasd amet magna sea stet eos vero lorem
+              ipsum dolore sed
+            </p>
+            <a
+              class="btn btn-lg btn-primary rounded"
+              href="{% url 'supply_chain'  %}"
+            >
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+          <div
+            class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center"
+          >
+            <div>
+              <img
+                src="{% static 'img\icon\Industries Interactive Maps.png' %}"
+                alt="Newsletter Subscription Icon"
+                class="icon2"
+              />
+            </div>
+            <h4 class="mb-3">Industries Interactive Maps</h4>
+            <p class="m-0">
+              Amet justo dolor lorem kasd amet magna sea stet eos vero lorem
+              ipsum dolore sed
+            </p>
+            <a
+              class="btn btn-lg btn-primary rounded"
+              href="{% url 'company_list'  %}"
+            >
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.9s"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Service End -->
+            <br></br><br></br>
+  <!-- Blog Start -->
+  <div
+    class="container-fluid py-3 wow fadeInUp background-image3"
+    data-wow-delay="0.1s"
+   >
+    <div class="container py-5">
+      <div
+        class="section-title text-center position-relative pb-3 mb-5 mx-auto"
+        style="max-width: 600px"
+      >
+        <h3 class="fw-bold" style="color: #a4282a; text-transform: uppercase">
+          Latest Blog
+        </h3>
+      </div>
+      <div class="row g-5">
+        {% for blog in blogs %}
+        <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+          <div class="blog-item bg-light rounded overflow-hidden">
+            <div class="blog-img position-relative overflow-hidden">
+              <img class="img-fluid" src="{{ blog.image.url }}" alt="" />
+              <a
+                class="position-absolute top-0 start-0 bg-custom-color text-white rounded-end mt-5 py-2 px-4"
+                href=""
+                >Latest Blog</a
+              >
+            </div>
+            <div class="p-4">
+              <div class="d-flex mb-3">
+                <small class="me-3"
+                  ><i class="far fa-user me-2" style="color: #a4282a"></i
+                  >{{blog.author}}</small
+                >
+                <small
+                  ><i
+                    class="far fa-calendar-alt me-2"
+                    style="color: #a4282a"
+                  ></i
+                  >{{blog.publication_date}}</small
+                >
+              </div>
+              <a href="{% url 'blog_details' blog.slug %}" class="read-more bi">
+                <h4 class="mb-3">{{blog.title|truncatewords:5}}</h4>
+              </a>
+              <p>{{ blog.content|truncatewords:18 }}</p>
+              <a
+                href="{% url 'blog_details' blog.slug %}"
+                class="read-more bi bi-arrow-right"
+                style="color: #a4282a"
+                >Read more</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- Blog Start -->
+               <br></br><br></br>
+  <!-- Quote Start -->
+  <div
+    class="container-fluid py-3 wow fadeInUp background-image5"
+    data-wow-delay="0.1s"
+   >
+    <div class="container py-5">
+      <div class="row g-5">
+        <div class="col-lg-7">
+          <div class="section-title position-relative pb-3 mb-5">
+            <h5
+              class="fw-bold"
+              style="color: #a4282a; text-transform: uppercase"
+            >
+              Request A Message
+            </h5>
+            <h1 class="mb-0">Please Feel Free to Contact Us</h1>
+          </div>
+          <div class="row gx-3">
+            <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+              <h5 class="mb-4">
+                <i class="fa fa-reply" style="color: #a4282a"></i>Reply within
+                24 hours
+              </h5>
+            </div>
+            <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+              <h5 class="mb-4">
+                <i class="fa fa-phone-alt" style="color: #a4282a"></i>24 hrs
+                telephone support
+              </h5>
+            </div>
+          </div>
+
+          <p class="mb-4">
+            Welcome to our website! We are dedicated to providing excellent
+            service and support to our customers. Whether you have questions
+            about our services or need assistance, feel free to reach out to us.
+            Our team is here to help you.
+          </p>
+
+          <div
+            class="d-flex align-items-center mt-2 wow zoomIn"
+            data-wow-delay="0.6s"
+          >
+            <div
+              class="bg-primary d-flex align-items-center justify-content-center rounded"
+              style="width: 60px; height: 60px"
+            >
+              <i class="fa fa-phone-alt text-white"></i>
+            </div>
+            <div class="ps-4">
+              <h5 class="mb-2">Call to ask any question</h5>
+              <h4 style="color: #a4282a">+8801671166809</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div
+            style="background-color: #a4282a"
+            class="rounded h-100 d-flex align-items-center p-5 wow zoomIn"
+            data-wow-delay="0.9s"
+          >
+            <form method="post" novalidate>
+              {% csrf_token %}
+              <div class="row g-3">
+                <div class="col-xl-12">
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control bg-light border-0"
+                    placeholder="Your Name"
+                    style="height: 55px"
+                    required
+                  />
+                </div>
+                <div class="col-12">
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control bg-light border-0"
+                    placeholder="Your Email"
+                    style="height: 55px"
+                    required
+                  />
+                </div>
+                <div class="col-12">
+                  <input
+                    type="text"
+                    name="subject"
+                    class="form-control bg-light border-0"
+                    placeholder="Subject"
+                    style="height: 55px"
+                    required
+                  />
+                </div>
+                <div class="col-12">
+                  <textarea
+                    name="message"
+                    class="form-control bg-light border-0"
+                    rows="3"
+                    placeholder="Message"
+                    required
+                  ></textarea>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-dark w-100 py-3" type="submit">
+                    Request A Quote
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+  <!-- Quote End -->
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>Thank you for your message! We will get back to you shortly.</p>
+    </div>
+  </div>
+
+  {% if success %}
+  <script>
+    showModal();
+  </script>
+  {% endif %} {% endblock %}
+</body>

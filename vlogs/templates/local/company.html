@@ -1,0 +1,421 @@
+{% extends 'index.html' %} 
+{% block body%} 
+{% load static %}
+
+    <title>Local Company Details</title>
+    <style>
+        .container {
+            max-width: 1950px;
+            margin: 25px auto;
+            
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        } 
+          .icon {
+            width: 30px; 
+            height: 30px; 
+        }
+    </style>
+ <body>
+
+  <!-- Spinner Start -->
+  <div
+    id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+  >
+    <div class="spinner"></div>
+  </div>
+  <!-- Spinner End -->
+
+  <!-- Navbar & Carousel Start -->
+  <div class="container-fluid position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+      <a href="{% url 'logo' %}" class="navbar-brand p-0">
+        <h1 class="m-0">
+          <img
+            class="w-100"
+            src="{% static 'img/logo/xlogo.png' %}"
+            height="80px"
+            width="100px"
+            alt="Image"
+          />
+        </h1>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="fa fa-bars"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >About Us</a
+            >
+            <div class="dropdown-menu m-0">
+              <a href="{% url 'about' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/information about factories.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon"
+                />
+                Who We Are
+              </a>
+              <a href="{% url 'missionvision' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Mission and Vision
+              </a>
+              <a href="{% url 'choose' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/list of factorics.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Why you Choose Us
+              </a>
+              <a href="{% url 'management_massage' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Supply Chain Information.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Message From Management
+              </a>
+            </div>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >Directories</a
+            >
+            <div class="dropdown-menu m-0">
+              <a href="{% url 'option' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/word2.png' %}"
+                  alt="Supply Chain Icon"
+                  class="icon"
+                />
+                International Buyer
+              </a>
+
+              <a href="{% url 'supply_chain' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Supply Chain Information.png' %}"
+                  alt="Supply Chain Icon"
+                  class="icon"
+                />
+                Supply Chain
+              </a> 
+
+              <a href="{% url 'local' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industries.png' %}"
+                  alt="Supply Chain Icon"
+                  class="icon"
+                />
+               Core Industries
+              </a>
+            </div>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >Service</a
+            >
+            <div class="dropdown-menu m-0">
+              <a href="{% url 'resource_library' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Factory & Tools Manufacturers Compnay List.png' %}"
+                  alt="Resource Library Icon"
+                  class="icon"
+                />
+                Resource Library
+              </a>
+              <a href="{% url 'requirement_list' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Certifications and Standards.png' %}"
+                  alt="Certifications and Standards Icon"
+                  class="icon"
+                />
+                Certifications and Standards
+              </a>
+              <a href="{% url 'list_factory' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Interactive Maps
+              </a> 
+
+              <a href="{% url 'list_factory' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Factory Setup
+              </a>
+            </div>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >News and Events</a
+            >
+            <div class="dropdown-menu m-0">
+              <a href="{% url 'news_all' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/newsletter subscription icon.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon"
+                />
+                News
+              </a>
+              <a href="{% url 'event' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Events
+              </a>
+              <a href="{% url 'gallery' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+               Our Gallery
+              </a>
+            </div>
+          </div>
+          <a href="{% url 'leaders' %}" class="nav-item nav-link"
+            >Industry Leader</a
+          >
+          <a href="{% url 'job_list' %}" class="nav-item nav-link"
+            >Job Portal</a
+          >
+          <a href="{% url 'blog' %}" class="nav-item nav-link">Blog</a>
+          <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+        </div>
+      </div>
+    </nav>
+ 
+    <div
+      id="header-carousel"
+      class="carousel slide carousel-fade"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="w-100" src="{% static 'img/company.jpg'%}" alt="Image" />
+          <div
+            class="carousel-caption d-flex flex-column align-items-center justify-content-center"
+          >
+            <div class="p-3" style="max-width: 900px">     
+             <h1 class="display-1 text-white mb-md-4 animated zoomIn">
+                Empowered Local Business
+              </h1>
+              <h6 class="text-white text-uppercase mb-3 animated slideInDown">               
+                Footware Today
+              </h6> 
+
+            </div>
+          </div>
+        </div>
+        {% comment %} <div class="carousel-item">
+          <img class="w-100" src="{% static 'img/home2.jpg'%}" alt="Image" />
+          <div
+            class="carousel-caption d-flex flex-column align-items-center justify-content-center"
+          >
+            <div class="p-3" style="max-width: 900px">
+              <h5 class="text-white text-uppercase mb-3 animated slideInDown">
+                Creative & Innovative
+              </h5>
+              <h1 class="display-1 text-white mb-md-4 animated zoomIn">
+                Creative & Innovative Digital Solution
+              </h1>
+              <a
+                href=""
+                class="btn btn-danger py-md-3 px-md-5 me-3 animated slideInLeft"
+                >Free Quote</a
+              >
+              <a
+                href="{% url 'contact'  %}"
+                class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight"
+                >Contact Us</a
+              >
+            </div>
+          </div>
+        </div> {% endcomment %}
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <!-- Navbar & Carousel End -->
+
+<!-- Factories Start  -->
+
+<div class="container  py-5 " > 
+   <div style="max-width: 1250px;" class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 1600px">
+    <h5 class="fw-bold text-danger text-uppercase" style="text-align: middle;">Overview of Bangladesh's Footwear and Leather Industry</h5>
+    <h6 style="text-align: justify;">
+        Bangladesh's footwear and leather industry is a dynamic sector encompassing tanning, footwear production, leather accessories, and fabric-based footwear. Recognized for quality and competitive pricing, the country supplies major international brands like Aldo, Timberland, and H&M.
+    </h6> 
+     <h6 class="fw-bold text-danger text-uppercase" style="text-align: left;">Export Markets</h6>
+    <h6 style="text-align: justify;">
+      The primary export destinations include the European Union, United States, Japan, the UK, and China, highlighting the global acceptance of Bangladeshi products.    </h6>
+
+     <h6 class="fw-bold text-danger text-uppercase" style="text-align: left;">Global Market Potential/h6>
+    <h6 style="text-align: justify;">
+    Valued at USD 394.12 billion in 2020, the global leather goods market is expected to grow at a CAGR of 5.9% through 2028. Increasing disposable incomes and evolving fashion trends drive demand for stylish leather products, presenting significant opportunities for Bangladeshi companies to expand their international reach.    </h6> 
+    
+    <h2 class="mt-5 mb-4 text-center">List of Companys (Total: {{count}})</h2>    
+</div> 
+
+
+<div class="container">
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Company Name</th>
+            <th>Managing Director</th>
+            <th>Factory Address</th>
+            <th>Head Office Address</th>
+            <th>Website Address</th>
+            <th>Contact Person</th>
+            <th>Product Line</th>
+            <th>Number of Manpower</th>
+            <th>Number of Finishing Lines</th>
+            <th>Production Capacity</th>
+            <th>Social Certification</th>
+            <th>Export Country</th>
+            <th>Major Buyer</th>
+            <th>Production Area</th>
+            <th>Other Contact Person</th>
+            <th>Establishment Year</th>
+            <th>Bond License Status</th>
+            <th>Investment</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for f in companies %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ f.name }}</td>
+            <td>{{ f.managing_director }}</td>
+            <td>{{ f.factory_address }}</td>
+            <td>{{ f.head_office_address }}</td>
+            <td>  <a href="http://{{ f.website_address }}" target="_blank" rel="noopener noreferrer">{{ f.website_address }}</a></td>
+            <td>{{ f.business_contact_person }}</td>
+            <td>{{ f.product_line }}</td>
+            <td>{{ f.number_of_manpower }}</td>
+            <td>{{ f.number_of_finishing_line }}</td>
+            <td>{{ f.production_capacity }}</td>
+            <td>{{ f.social_certification }}</td>
+            <td>{{ f.export_country }}</td>
+            <td>{{ f.major_buyer }}</td>
+            <td>{{ f.production_area }}</td>
+            <td>{{ f.other_contact_person }}</td>
+            <td>{{ f.establishment_year }}</td>
+            <td>{{ f.bond_license_status }}</td>
+            <td>{{ f.investment }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    <br></br>
+
+          <!-- Pagination -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          {% if companies.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1" tabindex="-1">First</a>
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="?page={{ companies.previous_page_number }}"
+              >Previous</a
+            >
+          </li>
+          {% endif %}
+          <li class="page-item disabled">
+            <span class="page-link"
+              >Page {{ companies.number }} of {{ companies.paginator.num_pages}}</span
+            >
+          </li>
+          {% if companies.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ companies.next_page_number }}"
+              >Next</a
+            >
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link"
+              href="?page={{ companies.paginator.num_pages }}"
+              >Last</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      <!-- End Pagination --> 
+  </div>
+ </body>
+</html>
+{% endblock %}
+</body>

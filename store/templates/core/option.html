@@ -1,0 +1,390 @@
+{% extends 'index.html' %}
+ {% load static %}
+{% block body %}
+<style> 
+        .icon {
+    width: 30px; 
+    height: 30px; 
+}
+    .custom-body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .custom-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .custom-card {
+        background-color: #ffffff; 
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        width: 300px;
+        max-width: 90%;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden; /* Ensures the :before element doesn't overflow */
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    }
+    .custom-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .custom-card:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        z-index: -1;
+        transition: border-color 0.3s ease-out;
+    }
+    .custom-card:nth-child(1) {
+        background-color: #d7ccc8; /* Light brown for "Lather" */
+    }
+    .custom-card:nth-child(1):before {
+        border-color: #ff6f00; /* Orange color for border */
+    }
+    .custom-card:nth-child(2) {
+        background-color: #f5f5f5; /* Light grey for "Synthetic" */
+    }
+    .custom-card:nth-child(2):before {
+        border-color: #ff8a80; /* Red color for border */
+    }
+    .custom-card:nth-child(3) {
+        background-color: #eceff1; /* Light blue-grey for "Eparadice" */
+    }
+    .custom-card:nth-child(3):before {
+        border-color: #80d8ff; /* Blue color for border */
+    }
+    .custom-card .iconcart {
+        font-size: 60px;
+        margin: 20px 0;
+    }
+    .custom-card h3 {
+        margin: 0;
+        color: #333;
+    }
+    .custom-card h1 {
+        margin: 10px 0;
+        color: #333;
+        font-weight: bold;
+    }
+    .custom-card p {
+        color: #777;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+        .custom-card {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .custom-card .icon {
+            font-size: 30px;
+            margin: 10px 0;
+        }
+        .custom-card h3 {
+            font-size: 20px;
+        }
+        .custom-card h1 {
+            font-size: 18px;
+        }
+        .custom-card p {
+            font-size: 12px;
+        }
+    }
+</style>
+
+<body> 
+
+  <!-- Spinner Start -->
+  <div
+    id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+  >
+    <div class="spinner"></div>
+  </div>
+  <!-- Spinner End -->
+
+  <!-- Navbar & Carousel Start -->
+  <div class="container-fluid position-relative p-0">
+
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+      <a href="{% url 'logo' %}" class="navbar-brand p-0">
+        <h1 class="m-0">
+          <img
+            class="w-100"
+            src="{% static 'img/logo/xlogo.png' %}"
+            height="80px"
+            width="100px"
+            alt="Image"
+          />
+        </h1>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="fa fa-bars"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >About Us</a
+            >
+            <div class="dropdown-menu m-0">
+             <a href="{% url 'who_we_are' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industries.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Who we are
+              </a> 
+              
+              <a href="{% url 'company_profile' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Certifications and Standards.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Company Profile
+              </a> 
+              <a href="{% url 'missionvision' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Mission and Vision
+              </a>
+              <a href="{% url 'choose' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/list of factorics.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Why you Choose Us
+              </a>
+              <a href="{% url 'management_massage' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Supply Chain Information.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Message From Management
+              </a>
+            </div>
+          </div>
+
+          <!--<div class="nav-item dropdown">-->
+          <!--  <a-->
+          <!--    href="#"-->
+          <!--    class="nav-link dropdown-toggle"-->
+          <!--    data-bs-toggle="dropdown"-->
+          <!--    >Directories</a-->
+          <!--  >-->
+          <!--  <div class="dropdown-menu m-0">-->
+          <!--    <a href="{% url 'option' %}" class="dropdown-item"> -->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/word2.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--      International Buyer-->
+          <!--    </a>-->
+
+          <!--    <a href="{% url 'supply_chain' %}" class="dropdown-item">-->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/Supply Chain Information.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--      Supply Chain-->
+          <!--    </a> -->
+
+          <!--    <a href="{% url 'local' %}" class="dropdown-item">-->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/industries.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--     Core Industries-->
+          <!--    </a>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >Service</a
+            >
+            <div class="dropdown-menu m-0">
+             
+             <a href="{% url 'requirement_list' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/word2.png' %}"
+                  alt="Certifications and Standards Icon"
+                  class="icon"
+                />
+                Industries we serve
+              </a>
+              
+              <a href="{% url 'requirement_list' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Certifications and Standards.png' %}"
+                  alt="Certifications and Standards Icon"
+                  class="icon"
+                />
+                Certifications and Standards
+              </a>
+              <a href="{% url 'list_factory' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Recruitment Maps
+              </a> 
+
+            </div>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >News and Events</a
+            >
+            <div class="dropdown-menu m-0">
+              <a href="{% url 'news_all' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/newsletter subscription icon.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon"
+                />
+                News
+              </a>
+              <a href="{% url 'event' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Events
+              </a>
+              <a href="{% url 'gallery' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+               Our Gallery
+              </a>
+            </div>
+          </div>
+          <a href="{% url 'leaders' %}" class="nav-item nav-link"
+            >Partner</a>
+          <a href="{% url 'job_list' %}" class="nav-item nav-link"
+            >Job Portal</a
+          >
+          <a href="{% url 'blog' %}" class="nav-item nav-link">Blog</a>
+          <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+        </div>
+      </div>
+    </nav>   
+    
+    <div 
+      id="header-carousel"
+      class="carousel slide carousel-fade"
+      data-bs-ride="carousel" 
+    >
+      <div class="carousel-inner" > 
+        <div class="carousel-item active">
+          <img class="w-100" src="{% static 'img/images2.jpeg'%}" alt="Image" />
+          <div
+            class="carousel-caption d-flex flex-column align-items-center justify-content-center"
+          >
+            <div class="p-3" style="max-width: 900px">
+              <h5
+                class="text-white text-uppercase mb-3 animated slideInDown"
+              ></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button  
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <!-- Navbar & Carousel End --> 
+
+<br></br><br></br>
+
+<div class="custom-container">
+    <a href="{% url 'lather' %}" class="custom-card">
+        
+        <h1>JSBDOVERSEASLTD</h1>
+        <p>Leather, renowned for its durability and timeless appeal, embodies craftsmanship and luxury.</p>
+        <div class="iconcart ">👟</div>
+    </a>
+    <a href="{% url 'synthetic' %}" class="custom-card">
+        
+        <h1>Leather Goods</h1>
+        <p>Synthetic materials offer versatility and sustainability, ideal for modern footwear innovations.</p>
+        <div class="iconcart ">👠</div>
+    </a>
+    <a href="{% url 'esparadice' %}" class="custom-card">
+        
+        <h1>Tenary</h1>
+        <p>Esparadis blends the classic appeal of leather with the versatility of synthetic materials, offering comfort and style.</p>
+        <!--<div class="iconcart ">👞</div>-->
+        <div class="iconcart">
+            <i class="fas fa-industry" style="color: orange;"></i> <!-- Factory icon with color -->
+        </div>
+    </a>
+</div>
+
+{% endblock %}
+</body>

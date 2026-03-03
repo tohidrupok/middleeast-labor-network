@@ -1,0 +1,681 @@
+
+{% extends 'index.html' %} 
+{% block body%} 
+{% load static %}
+<style>
+  .text-justify {
+    text-align: justify;
+  }
+
+  .news-image {
+    max-width: 80%;
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .news-details {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+  } 
+
+  /* General styling */
+  .img_container {
+    max-width: 900px;
+    margin: auto;
+  }
+
+  .event-details {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .event-images-masonry {
+    column-count: 3;
+    column-gap: 15px;
+  }
+
+  .event-image-item {
+    margin-bottom: 15px;
+    break-inside: avoid;
+  }
+
+  .event-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+  }
+
+  .gallery-video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+</style>
+<body>
+  <!-- Spinner Start -->
+  <div
+    id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+  >
+    <div class="spinner"></div>
+  </div>
+  <!-- Spinner End -->
+
+ <!-- Navbar & Carousel Start -->
+<div class="container-fluid position-relative p-0">
+
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+      <a href="{% url 'logo' %}" class="navbar-brand p-0">
+        <h1 class="m-0">
+          <img
+            class="w-100"
+            src="{% static 'img/logo/xlogo.png' %}"
+            height="80px"
+            width="100px"
+            alt="Image"
+          />
+        </h1>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="fa fa-bars"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >About Us</a
+            >
+            <div class="dropdown-menu m-0">
+             <a href="{% url 'who_we_are' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industries.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Who we are
+              </a> 
+              
+              <a href="{% url 'company_profile' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Certifications and Standards.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Company Profile
+              </a> 
+              <a href="{% url 'missionvision' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Mission and Vision
+              </a>
+              <a href="{% url 'choose' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/list of factorics.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Why you Choose Us
+              </a>
+              <a href="{% url 'management_massage' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Supply Chain Information.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Message From Management
+              </a>
+            </div>
+          </div>
+
+          <!--<div class="nav-item dropdown">-->
+          <!--  <a-->
+          <!--    href="#"-->
+          <!--    class="nav-link dropdown-toggle"-->
+          <!--    data-bs-toggle="dropdown"-->
+          <!--    >Directories</a-->
+          <!--  >-->
+          <!--  <div class="dropdown-menu m-0">-->
+          <!--    <a href="{% url 'option' %}" class="dropdown-item"> -->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/word2.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--      International Buyer-->
+          <!--    </a>-->
+
+          <!--    <a href="{% url 'supply_chain' %}" class="dropdown-item">-->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/Supply Chain Information.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--      Supply Chain-->
+          <!--    </a> -->
+
+          <!--    <a href="{% url 'local' %}" class="dropdown-item">-->
+          <!--      <img-->
+          <!--        src="{% static 'img/icon/industries.png' %}"-->
+          <!--        alt="Supply Chain Icon"-->
+          <!--        class="icon"-->
+          <!--      />-->
+          <!--     Core Industries-->
+          <!--    </a>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >Service</a
+            >
+            <div class="dropdown-menu m-0">
+             
+             <a href="{% url 'industries' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/word2.png' %}"
+                  alt="Certifications and Standards Icon"
+                  class="icon"
+                />
+                Industries We Serve
+              </a>
+              
+              <a href="{% url 'requirement_list' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Certifications and Standards.png' %}"
+                  alt="Certifications and Standards Icon"
+                  class="icon"
+                />
+                Certifications and Standards
+              </a>
+              <a href="{% url 'list_factory' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/Industries Interactive Maps.png' %}"
+                  alt="Interactive Maps Icon"
+                  class="icon"
+                />
+                Recruitment Maps
+              </a> 
+
+            </div>
+          </div>
+
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              >Blog and Events</a
+            >
+            <div class="dropdown-menu m-0">
+              <!--<a href="{% url 'news_all' %}" class="dropdown-item">-->
+              <!--  <img-->
+              <!--    src="{% static 'img/icon/newsletter subscription icon.png' %}"-->
+              <!--    alt="Newsletter Subscription Icon"-->
+              <!--    class="icon"-->
+              <!--  />-->
+              <!--  News-->
+              <!--</a>-->
+              <a href="{% url 'blog' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/newsletter subscription icon.png' %}"
+                  alt="Newsletter Subscription Icon"
+                  class="icon"
+                />
+                Blog
+              </a>
+              
+              
+              <a href="{% url 'event' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+                Events
+              </a>
+              <a href="{% url 'gallery' %}" class="dropdown-item">
+                <img
+                  src="{% static 'img/icon/industry news and events icon.png' %}"
+                  alt="Industry News and Events Icon"
+                  class="icon"
+                />
+               Our Gallery
+              </a>
+            </div>
+          </div>
+          
+         <a href="{% url 'parthner' %}" class="nav-item nav-link">Partner</a>
+         <a href="{% url 'job_list' %}" class="nav-item nav-link">Job Portal</a>
+         <a href="{% url 'leaders' %}" class="nav-item nav-link">Team</a>   
+         <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+         
+        </div>
+      </div>
+    </nav> 
+    <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="w-100" src="{% static 'img/gal2.png'%}" alt="Image" />
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px">
+                        <h1 class="display-1 text-white mb-md-4 animated zoomIn"></h1> 
+                    </div>
+                </div>
+            </div>
+            <!-- Additional carousel items can be added here -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- Navbar & Carousel End -->
+
+
+<!-- Gallery Section Start -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ===== GALLERY SECTION — UNIQUE PREFIX: glx_ ===== */
+  .glx_section {
+    padding: 80px 0;
+    background: #0d0d0d;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glx_section::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(212,160,80,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .glx_heading_wrap {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .glx_label {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #d4a050;
+    margin-bottom: 14px;
+  }
+
+  .glx_main_title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 900;
+    color: #f5f0e8;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .glx_main_title span {
+    color: #d4a050;
+  }
+
+  /* TAB SWITCHER */
+  .glx_tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 60px;
+    border: 1px solid rgba(212,160,80,0.3);
+    border-radius: 4px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+  }
+
+  .glx_tab_btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 14px 40px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+    color: rgba(245,240,232,0.45);
+    position: relative;
+  }
+
+  .glx_tab_btn.glx_active {
+    background: #d4a050;
+    color: #0d0d0d;
+  }
+
+  .glx_tab_btn:not(.glx_active):hover {
+    color: #d4a050;
+  }
+
+  /* TAB CONTENT */
+  .glx_panel { display: none; }
+  .glx_panel.glx_visible { display: block; }
+
+  /* PHOTOS — MASONRY GRID */
+  .glx_grid {
+    columns: 3;
+    column-gap: 20px;
+  }
+
+  @media (max-width: 992px) { .glx_grid { columns: 2; } }
+  @media (max-width: 576px) { .glx_grid { columns: 1; } }
+
+  .glx_group {
+    break-inside: avoid;
+    margin-bottom: 20px;
+  }
+
+  .glx_group_title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #d4a050;
+    margin-bottom: 10px;
+    padding-left: 2px;
+  }
+
+  .glx_img_wrap {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .glx_img_wrap img {
+    width: 100%;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    object-fit: cover;
+  }
+
+  .glx_img_wrap:hover img { transform: scale(1.06); }
+
+  .glx_img_overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,13,13,0.75) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+
+  .glx_img_wrap:hover .glx_img_overlay { opacity: 1; }
+
+  .glx_img_zoom_icon {
+    color: #f5f0e8;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  /* VIDEOS */
+  .glx_video_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .glx_video_card {
+    background: #161616;
+    border: 1px solid rgba(212,160,80,0.12);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .glx_video_card:hover {
+    border-color: rgba(212,160,80,0.4);
+    transform: translateY(-4px);
+  }
+
+  .glx_video_card video {
+    width: 100%;
+    display: block;
+    max-height: 240px;
+    object-fit: cover;
+    background: #000;
+  }
+
+  .glx_video_meta {
+    padding: 14px 16px;
+  }
+
+  .glx_video_meta h6 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #f5f0e8;
+    margin: 0 0 4px 0;
+  }
+
+  .glx_video_meta p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(245,240,232,0.45);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* LIGHTBOX */
+  .glx_lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(13,13,13,0.96);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .glx_lightbox.glx_lb_open { display: flex; }
+
+  .glx_lb_img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 3px;
+    animation: glx_fadeIn 0.25s ease;
+  }
+
+  .glx_lb_close {
+    position: fixed;
+    top: 24px; right: 30px;
+    background: none;
+    border: none;
+    color: #f5f0e8;
+    font-size: 36px;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .glx_lb_close:hover { opacity: 1; }
+
+  @keyframes glx_fadeIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* EMPTY STATE */
+  .glx_empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(245,240,232,0.25);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+</style>
+
+<div class="glx_section">
+  <div class="container">
+
+    <!-- Heading -->
+    <div class="glx_heading_wrap">
+      <div class="glx_label">Our Collection</div>
+      <h1 class="glx_main_title">Gal<span>lery</span></h1>
+    </div>
+
+    <!-- Tab Switcher -->
+    <div class="glx_tabs">
+      <button class="glx_tab_btn glx_active" data-glx-tab="photos">&#9654; Photos</button>
+      <button class="glx_tab_btn" data-glx-tab="videos">&#9654; Videos</button>
+    </div>
+
+    <!-- PHOTOS PANEL -->
+    <div class="glx_panel glx_visible" id="glx_panel_photos">
+      <div class="glx_grid">
+        {% for gallery in galleries %}
+          <div class="glx_group">
+            <div class="glx_group_title">{{ gallery.title }}</div>
+            {% for image in gallery.images.all %}
+              {% if image.image %}
+                <div class="glx_img_wrap" onclick="glxOpenLb('{{ image.image.url }}')">
+                  <img src="{{ image.image.url }}" alt="{{ gallery.title }}" loading="lazy">
+                  <div class="glx_img_overlay"><span class="glx_img_zoom_icon">&#x2B</span></div>
+                </div>
+              {% endif %}
+              {% if image.image2 %}
+                <div class="glx_img_wrap" onclick="glxOpenLb('{{ image.image2.url }}')">
+                  <img src="{{ image.image2.url }}" alt="{{ gallery.title }}" loading="lazy">
+                  <div class="glx_img_overlay"><span class="glx_img_zoom_icon">&#x2B</span></div>
+                </div>
+              {% endif %}
+              {% if image.image3 %}
+                <div class="glx_img_wrap" onclick="glxOpenLb('{{ image.image3.url }}')">
+                  <img src="{{ image.image3.url }}" alt="{{ gallery.title }}" loading="lazy">
+                  <div class="glx_img_overlay"><span class="glx_img_zoom_icon">&#x2B</span></div>
+                </div>
+              {% endif %}
+            {% empty %}
+              <div class="glx_empty">No photos yet</div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- VIDEOS PANEL -->
+    <div class="glx_panel" id="glx_panel_videos">
+      <div class="glx_video_grid">
+        {% for gallery in galleries %}
+          {% if gallery.videos.all %}
+            {% for video in gallery.videos.all %}
+              {% if video.video %}
+                <div class="glx_video_card">
+                  <video controls preload="metadata">
+                    <source src="{{ video.video.url }}" type="video/mp4">
+                  </video>
+                  <div class="glx_video_meta">
+                    <h6>{{ gallery.title }}</h6>
+                    <p>{{ gallery.description|truncatewords:12 }}</p>
+                  </div>
+                </div>
+              {% endif %}
+              {% if video.video2 %}
+                <div class="glx_video_card">
+                  <video controls preload="metadata">
+                    <source src="{{ video.video2.url }}" type="video/mp4">
+                  </video>
+                  <div class="glx_video_meta">
+                    <h6>{{ gallery.title }}</h6>
+                    <p>{{ gallery.description|truncatewords:12 }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% empty %}
+          <div class="glx_empty">No videos yet</div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div><!-- /container -->
+</div><!-- /glx_section -->
+
+<!-- Lightbox -->
+<div class="glx_lightbox" id="glxLightbox" onclick="glxCloseLb()">
+  <button class="glx_lb_close" onclick="glxCloseLb()">&times;</button>
+  <img class="glx_lb_img" id="glxLbImg" src="" alt="">
+</div>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.glx_tab_btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.glx_tab_btn').forEach(b => b.classList.remove('glx_active'));
+      document.querySelectorAll('.glx_panel').forEach(p => p.classList.remove('glx_visible'));
+      this.classList.add('glx_active');
+      document.getElementById('glx_panel_' + this.dataset.glxTab).classList.add('glx_visible');
+    });
+  });
+
+  // Lightbox
+  function glxOpenLb(src) {
+    document.getElementById('glxLbImg').src = src;
+    document.getElementById('glxLightbox').classList.add('glx_lb_open');
+    document.body.style.overflow = 'hidden';
+  }
+  function glxCloseLb() {
+    document.getElementById('glxLightbox').classList.remove('glx_lb_open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') glxCloseLb();
+  });
+</script>
+<!-- Gallery Section End -->
+{% endblock %}
+</body>

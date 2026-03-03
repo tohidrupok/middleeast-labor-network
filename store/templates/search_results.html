@@ -1,0 +1,154 @@
+{% extends 'index.html' %} 
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSBDOVERSEASLTD</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20vh; 
+            margin-top: 20px;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 24px;
+            padding: 5px 10px;
+            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+            width: 60%;
+        }
+
+        .search-input {
+            border: none;
+            outline: none;
+            padding: 10px;
+            border-radius: 24px;
+            font-size: 16px;
+            flex: 1;
+        }
+
+        .search-btn {
+            background: #bb2d3b;
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .search-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
+
+        .search-btn:hover {
+            transform: scale(1.1);
+            background-color: #f48155;
+        }
+
+        .search-results {
+            padding: 20px;
+        }
+
+        .search-results ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .search-results li {
+            margin-bottom: 10px;
+            border-left: 5px solid #4285f4;
+            padding-left: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-results li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-results a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .search-results li .category {
+            font-style: italic;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <form method="get" action="{% url 'search' %}" class="search-form">
+            <input type="text" name="query" value="{{ query }}" placeholder="Search..." class="search-input">
+            <button type="submit" class="search-btn">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.71 20.29l-4.53-4.53a8 8 0 1 0-1.42 1.42l4.53 4.53a1 1 0 0 0 1.42-1.42zM10 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+                </svg>
+            </button>
+        </form>
+    </div>
+
+    <div class="search-results">
+        <h2>Search Results:</h2>
+        <ul>
+            {% for result in results %}
+                <li>
+                    {% if result.class_name == 'Company' %}
+                        <a href="{% url 'company_detail' result.slug %}">{{ result.company_name }}</a> - <span class="category">Company</span>
+                    {% elif result.class_name == 'ServiceAppCompany' %}
+                        Company Name: {{ result.company_name }} - Owner Name: {{ result.contact }} - Address: {{ result.address }} - Email: {{ result.email }} ---- <span class="category">Service Company</span>
+                    {% elif result.class_name == 'NewsArticle' %}
+                        <a href="{% url 'news_detail' result.slug %}">{{ result.title }}</a> - <span class="category">News Article</span>
+                    {% elif result.class_name == 'Leaders' %}
+                        <a href="{% url 'person_detail' result.slug %}">{{ result.name }}</a> - <span class="category">Leader</span>
+                    {% elif result.class_name == 'Factory' %}
+                        Factory Name: {{ result.factory_name }} - Owner Name: {{ result.owner_name }} - Address: {{ result.address }} - Contact: {{ result.contact }} - Responsibility: {{ result.responsibility }} ---<span class="category">Factory</span>
+                    {% elif result.class_name == 'InternationalCompany' %} 
+                        Company Name: {{ result.company_name }} - Owner Name: {{ result.owner_name }} - Address: {{ result.address }} - Contact: {{ result.contact }} - Responsibility: {{ result.responsibility }} -- <span class="category">International Company</span>
+                    {% elif result.class_name == 'Event' %}
+                        <a href="{% url 'event_details' result.slug %}">{{ result.title }}</a> - <span class="category">Event</span>
+                    {% elif result.class_name == 'Gallery' %}
+                        <a href="{% url 'gallery' %}">{{ result.title }}</a> - <span class="category">Gallery</span>
+                    {% elif result.class_name == 'Publication' %}
+                        <a href="{% url 'resource_library' %}">{{ result.name }}</a> - <span class="category">Publication</span>
+                    {% elif result.class_name == 'Category' %}
+                        <a href="{% url 'category_list' result.slug %}">{{ result.category_name }}</a> - <span class="category">Category</span>
+                    {% elif result.class_name == 'Requirement' %}
+                        <a href="{% url 'requirement' result.slug %}">{{ result.title }}</a> - <span class="category">Requirement</span>
+                    {% else %}
+                        {{ result.name }} - <span class="category">{{ result.class_name }}</span>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>No results found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+</body>
+</html>
