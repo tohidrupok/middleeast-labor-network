@@ -174,6 +174,6 @@ EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
 
 EMAIL_HOST_USER = 'info@jsbdoverseasltd.com'
-EMAIL_HOST_PASSWORD = '2FrFPn8,m4^~SQ1q' 
+EMAIL_HOST_PASSWORD = 'typeyoupass-bro' 
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
